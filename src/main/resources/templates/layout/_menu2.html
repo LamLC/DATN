@@ -1,0 +1,96 @@
+<div xmlns:th=http://www.thymeleaf.org>
+		<!--Nav header-->
+    <!-- place navbar here -->
+    <nav class="navbar navbar-expand-lg navbar-light   nav-container"
+		style="background-color: #8A817C; color: black;" id="content">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/}"><img src="/images/logo_max.png" alt="" style="width: 200px; height: 75px;  "></a>
+			
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="main-menu">
+          
+            <li class="nav-item">
+              <a class="nav-link active  nav-hover nav-top" aria-current="page" th:href="@{/cart/gioithieu}" style="color: black; margin-left: 80px; margin-top: -2px; font-weight : bold;">GIỚI THIỆU</a>
+            </li>
+            
+           	<li class="nav-item  nav-item-box">
+           		<a  th:each="c:${cates}" th:href="@{|/product/list?cid=${c.id}|}" class="nav-link active nav-hover" style="color: black; margin-left: 20px" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true" aria-current="page">[[${c.name}]]</a>
+           	</li>
+             
+            
+            <li class="nav-item dropdown" th:if="${#request.remoteUser}">
+              <a class="nav-link dropdown-toggle user" href="#" style="color: black; margin-top: -2px;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img style="width: 20px; height: 20px; background: none;" th:src="@{/images/users-2.png}"
+							src="/static/images/users-2.png">  [[${#request.remoteUser}]]
+              </a>
+              </th:block>
+              <ul class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown">
+              	<th:block th:if="${#request.remoteUser}">
+                <li><a  class="dropdown-item" th:href="@{/order/list}" style="color: black;">TRANSACTION HISTORY</a></li>
+                <li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+                <a class="dropdown-item" th:href="@{/admin/home/index}" style="color: black;  ">ADMIN</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" th:href="@{/security/logoff}" style="color: black; ">LOG OUT</a></li>
+                </th:block>
+              </ul>
+            </li>
+            <!-- <th:block th:if="${#request.remoteUser}">
+            <li class="nav-item">
+              <a class="nav-link active nav-top" th:href="@{/security/logoff}" style="color: black; margin-top: -2px;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                LOG OUT
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-top" th:href="@{/order/list}" style="color: black; margin-top: -2px;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ORDER
+              </a>
+            </li>
+            <li class="nav-item" th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+              <a class="nav-link active nav-top" th:href="@{/admin/home/index}" style="color: black; margin-top: -2px;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ADMIN
+              </a>
+            </li>
+            </th:block>-->
+            <th:block th:unless="${#request.remoteUser}" class="nav-item">
+                	<li><a th:href="@{/security/login/form}" class="nav-link active nav-top" style="color: black; margin-top: -2px;" id="navbarDropdown" role="button">SIGN IN </a></li>
+               </th:block>
+          </ul>
+          <!--<form class="d-flex  nav-item">
+            <ul th:if="${#request.remoteUser}" class="nav navbar-nav navbar-right">
+                <li><a href="#" class="nav-link active" style="color: black; margin-top: -2px;" id="navbarDropdown">XIN CHÀO :  [[${#request.remoteUser}]]</a></li>
+            </ul>
+            
+          </form>-->
+          <!--  <form >
+					
+					<input >
+					<button  class="icon bg-dark btn-search"><img th:src="@{/images/search1.png}"
+							src="/static/images/search1.png" style="width: 50px; height: 50px;" class="nav-icon"></button>
+					</form>-->
+		<form  class="d-flex" th:action="@{/product/search}">
+          	<input  name="key" type="text" placeholder="Search" class="form-control me-2  search">
+            <button type="submit" title="Search" class="btn btn-outline-success" ><i class="fa fa-search"></i></button>
+          </form>
+          <ul id="main-menu">
+            <li>
+              <div class="panel panel-primary">
+        		<div class="panel-body tect-center">
+            
+            <a th:href="@{/cart/view}"><i class="glyphicon glyphicon-shopping-cart" style="font-size: 25px; "></i><img src="/images/icon-giohang.png" alt="" style="width: 50px; height: 50px;"></a>
+        </div>
+    </div>
+                  
+          </li>
+          </ul>
+          
+        </div>
+			</div>
+	</nav>
+</div>

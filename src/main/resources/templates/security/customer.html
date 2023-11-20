@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/index :: dynamic(~{::main})}" >
+
+<body>
+	<main>
+	<div id="custom-alert" class="custom-alert"></div>
+	<div class="container-customer" >
+        <div class="body-setting">
+            <div class="items-title">
+                <h2>Thông Tin Tài Khoản</h2>
+                <p>Home / Tài Khoản</p>
+            </div>
+            <div class="body-Customer">
+                <div class="body-left">
+                    <a class="User-photo" th:each="account, state: ${accounts}"><img  th:src="|/images/${account.photo}|"></a>
+                    <a href="#" class="edit"><button ng-click="editCustomer(custom)">Chỉnh Sửa</button></a>
+                    <a href="#"><span>Lịch Sử Giao Dịch</span></a>
+                    <a href="#"><span>Đăng Xuất</span></a>
+                </div>
+                <table class="shopping-hover body-right">
+                	<thead>
+	                    <tr class="shopping-th">
+	                       
+	                        <th>Username</th>
+	                        <th>Fullname</th>
+	                        <th>Email</th>
+	                        <th>Số Điện Thoại</th>
+	                        <th>Address</th>
+	                        <th></th>
+	                    </tr>
+	                </thead>
+                    <tbody>
+                        <tr th:each="account, state: ${accounts}"  >
+                            <td th:text="${account.username}">Username</td>
+                            <td th:text="${account.fullname}">Fullname</td>
+                            <td th:text="${account.email}">Email</td>
+                            <td th:text="${account.phone}">Số Điện Thoại</td>
+                            <td th:text="${account.address}">Address</td>
+                            <!-- Add other account details here -->
+                            <td>
+                            <a th:href="@{|/account/customer/${account.username}|}" class="btn btn-default">
+                            <b class="glyphicon glyphicon-search"></b>
+                            </a>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Chỉnh sửa tài khoản -->
+    <div class="infoForm-mangement-box">
+                <h2>Kiểm soát tài khoản khách hàng</h2>
+                <div class="infoForm-inhit">
+          <form id="infoForm-mangement">
+    <div class="cust-mangement-title">
+        <label for="selectedUsername">Tên</label>
+        <input type="text" id="selectedUsername" name="selectedUsername" ng-model="selectedCustomer.username" required>
+    </div>
+
+    <div class="cust-mangement-title">
+        <label for="selectedFullName">Họ và Tên</label>
+        <input type="text" id="selectedFullName" name="selectedFullName" ng-model="selectedCustomer.fullname" required>
+    </div>
+    
+    <div class="cust-mangement-title">
+        <label for="selectedPassword">Mật Khẩu</label>
+        <input type="text" id="selectedPassword" name="selectedPassword" ng-model="selectedCustomer.password" required>
+    </div>
+
+    <div class="cust-mangement-title">
+        <label for="selectedAddress">Địa chỉ</label>
+        <input type="text" id="selectedAddress" name="selectedAddress" ng-model="selectedCustomer.address" required>
+    </div>
+
+    <div class="cust-mangement-title">
+        <label for="selectedEmail">Email</label>
+        <input type="email" id="selectedEmail" name="selectedEmail" ng-model="selectedCustomer.email" required>
+    </div>
+
+    <div class="cust-mangement-title">
+        <label for="selectedPhone">Số điện thoại</label>
+        <input type="tel" id="selectedPhone" name="selectedPhone" ng-model="selectedCustomer.phone" required>
+    </div>
+</form>
+                </div>
+      <div class="button-container-cust">
+    <button type="button" ng-click="updateCustomer()">Cập nhật</button>
+
+
+</div>
+            </div>
+
+    </main>
+</body>
+</html>

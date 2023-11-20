@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff</title>
+
+</head>
+<body>
+	<main>
+		<div>
+
+			<div class="table-staff">
+				<table class="staff-list-edit">
+					<thead>
+						<tr>
+							<th>Username</th>
+							<th>Password</th>
+							<th>Fullname</th>
+							<th>Address</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						<tr ng-repeat="item in stafs">
+							<td>{{item.username}}</td>
+							<td>{{item.password}}</td>
+							<td>{{item.fullname}}</td>
+							<td>{{item.address}}</td>
+							<td>{{item.email}}</td>
+							<td>{{item.phone}}</td>
+							<td class="exper0">
+								<div class="exper">
+									<button ng-click="editStaf(item)" class="las la-wrench"></button>
+								</div>
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+				<div class="text-center naviga">
+					<button ng-click="pager.first()" class="navigation1">
+						<b class='bx bxs-chevrons-left'></b>
+					</button>
+					<button ng-click="pager.prev()" class="navigation1"
+						style="border: none;">
+						<b class='bx bxs-chevron-left'></b>
+					</button>
+					<button class="">{{pager.page + 1}} OF {{pager.count}}</button>
+					<button ng-click="pager.next()" class="navigation1">
+						<b class='bx bxs-chevron-right'></b>
+					</button>
+					<button ng-click="pager.last()" class="navigation1">
+						<b class='bx bxs-chevrons-right'></b>
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+	</main>
+</body>
+</html>
+

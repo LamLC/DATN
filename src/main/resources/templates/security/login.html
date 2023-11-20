@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/Sign_in.css">
+    <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <style type="text/css">
+
+.catch{
+	margin-left:50px;
+}
+   
+   </style>
+</head>
+<body id="body">  
+	
+    <div class="container" id="container">
+    
+        <div class="form-container sign-up-container">
+        	<a th:href="@{/}"><img class="img-form-right" th:src="@{/img/next.png}" src="/static/img/next.png"></a>
+            <!-- Sign Up form code goes here -->
+            <form action="/register" method="post">
+            	<i class="pull-left text-danger" th:text="${message}"></i>
+                <h1>Sign up</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="social"><i class="fa fa-google"></i></a>
+                </div>
+                <span></span>
+                <input type="text" name="username" placeholder="Username" />
+                <input type="email" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+                <button style="background-color: rgb(151, 29, 29);">Sign Up</button>
+                <div class="thongbao-sign-in"><i class="pull-left text-danger"></i> </div>
+            </form>
+        </div>
+        <div class="form-container sign-in-container" >
+       <a th:href="@{/}"><img class="img-form-left" th:src="@{/img/reply.png}" src="/static/img/reply.png"></a>
+            <!-- Sign In form code goes here -->
+            <form th:action="@{/security/login}" method="post" >
+            <i th:text="${message}"></i>
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="social"><i class="fa fa-google"></i></a>
+                   
+                </div>
+                <span></span>
+                <input class="form-control" id="floatingInput" name="username" placeholder="Username"> <label for="floatingInput"></label>
+                <input type="password" name="password" class="form-control"
+									id="floatingPassword" placeholder="Password"> <label
+									for="floatingPassword"></label>
+									
+             
+                	<div class="d-grid">
+									
+									<button
+										class="btn btn-primary btn-login text-uppercase fw-bold  btn btn-success"
+										type="submit"
+										style="background-color: black; border: 1px black; " >Sign in</button>
+										<div class="thongbao-sign-in"><i class="pull-left text-danger"></i> </div>
+					</div>
+            </form>
+             
+        </div>
+        <div class="overlay-container">
+            <!-- The overlay code goes here -->
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1></h1>
+                    <!--<p>To keep connected with us please login with your personal info</p>-->
+                    <button class="ghost" id="signIn" style="background-color: rgb(151, 29, 29);">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1></h1>
+                    <!--<p>Enter your personal details and start journey with us</p>-->
+                    <button class="ghost" id="signUp" style="background-color: #4087f1;">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/javascrips/Sign_in.js"></script>
+</body>
+</html>

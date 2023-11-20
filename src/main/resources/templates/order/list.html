@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/index :: dynamic(~{::main})}">
+
+
+<body>
+    <main>
+         <div class="shopping-cart" >
+         <div class="shopping-shopping">
+        <div class="shopping-heading"><p>ĐƠN HÀNG MÀ BẠN ĐÃ MUA</p></div><hr>
+        <table class="shopping-hover">
+                <thead>
+                    <tr class="shopping-th">
+                        <th>Số Thứ Tự</th>
+                        <th>Mã Đơn Hàng</th>
+                        <th>Ngày Mua Hàng</th>
+                        <th>Địa chỉ Nhận Hàng</th>
+                        <th>Trạng Thái Đơn Hàng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="order,state:${orders}" class="shopping-td">
+                        <td>[[${state.index}]]</td>
+                        <td><a th:href="@{|/order/detail/${order.id}|}" style="color: black;" >[[${order.id}]]</a></td>
+                        <td>[[${order.createDate}]]</td>
+                        <td>[[${order.address}]]</td>
+                        <td>[[${order.status.status}]]</td>
+                        
+                        <td>
+                            <a th:href="@{|/order/detail/${order.id}|}" class="btn btn-default">
+                            <b class="glyphicon glyphicon-search"></b>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+    </div>
+    </main>
+</body>
+
+</html>

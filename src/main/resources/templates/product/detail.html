@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/index :: dynamic(~{::main})}">
+ 
+<body>
+    <main th:object="${item}">
+    <br>
+    <section id="prodetails" class="section-p1">
+        <div class="single-pro-image">
+            <div class="small-img-group">
+                <div class="small-img-col">
+                    <img th:src="@{|/images/*{image}|}"  width="100%" id="small-img" alt="">
+                </div>
+                <br>
+                <div class="small-img-col">
+                    <img th:src="@{|/images/*{image}|}"  width="100%" id="small-img" alt="">
+                </div>
+                <br>
+                <div class="small-img-col">
+                    <img th:src="@{|/images/*{image}|}" width="100%" id="small-img" alt="">
+                </div>
+                <br>
+                <div class="small-img-col">
+                    <img th:src="@{|/images/*{image}|}" width="100%" id="small-img" alt="">
+                </div>
+            </div>
+
+            <img th:src="@{|/images/*{image}|}" width="100%" id="MainImg" alt="">
+        
+          
+        </div>
+
+
+        <div class="single-pro-details">
+          
+        <h4 th:text="*{name}"></h4>
+        <h2 th:text="*{price}+'  VNĐ'"></h2>
+        <p th:text="*{createDate}"></p>
+        <button class="normal" th:attr="ng-click=@{|cart.add(*{id})|}">Them vao gio hang</button>
+        <h4>Thông tin thương hiệu</h4>
+        <span>
+            <p>Từ niềm đam mê với môn thể thao chạy bộ và nhận ra được nhu cầu ngày càng tăng đối với giày chạy,
+            Bill Bowerman và học trò Phil Knight đã thành lập Blue Ribbon Sport (BRS) vào năm 1964,
+            hoạt động với vai trò phân phối giày thương hiệu Onizuka đến từ Nhật. Phải đến năm 1971, 
+            khi mối quan hệ với nhà cung cấp Nhật có sự rạn nứt, điều này đã thúc đẩy Bill cho ra đời 
+            thương hiệu Nike với những đôi giày do hãng tự thiết kế và sản xuất. </p>
+        </span>
+        </div>
+        
+       
+
+    </section>
+
+    <br>
+		<div class="product-detail-heading">
+			<p>Hàng cùng loại</p>
+		</div>
+		<div class="product-detail-main  ">
+
+				<div th:each="p:*{category.products}" class="product-detail-sp image">
+
+					<div class="product-detail-pannel">
+						<div>
+							<a th:href="@{|/product/detail/${p.id}|}"><img class="item"
+								th:src="@{|/images/${p.image}|}"></a>
+						</div>
+						<div class="product-detail-name">
+							<span th:text="${p.name}"></span>
+						</div>
+						<div class="product-detail-price">
+							Giá:<span th:text="${p.price}"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<div id="pagination">
+        <ul id="page-numbers"></ul>
+     </div>
+	</main>
+</body>
+
+</html>
